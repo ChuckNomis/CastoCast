@@ -14,9 +14,10 @@ code {
 
 header {
   position: relative;
-  height: 10vh;
+  height: 8vh;
   border-bottom: 7px solid #eee;
   text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 main {
@@ -25,4 +26,10 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+menu-right {
+  display: flex;
+  justify-content: space-between;
+  text-align: right;
 }

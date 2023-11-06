@@ -1,5 +1,9 @@
 function Hello() {
-  return <h1>Hello</h1>;
+  return (
+    <menu-right>
+      <h1>CastToCast Game</h1>
+    </menu-right>
+  );
 }
 
 export default Hello;
