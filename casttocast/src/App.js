@@ -1,7 +1,7 @@
 import Hello from "./hello";
 
 function App() {
-  return <Hello />;
+  return <header>{<Hello />}</header>;
 }
 
 export default App;
