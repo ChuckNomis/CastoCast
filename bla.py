@@ -1,3 +1,1 @@
-print("hello tamari")
-
-print("hello nadav")
+print("hello guytamri")
