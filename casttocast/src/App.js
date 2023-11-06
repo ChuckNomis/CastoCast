@@ -1,7 +1,7 @@
 import Hello from "./Components/hello";
 
 function App() {
-  return <header>{<Hello />}</header>;
+  return <main>{<Hello />}</main>;
 }
 
 export default App;
