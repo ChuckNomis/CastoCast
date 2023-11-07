@@ -1,11 +1,12 @@
 import Hello from "./Components/hello";
-import Appcast from "./Components/nadav";
-import ActorsList from "./Components/nadav";
+import Appcast from "./Components/TopActors";
+import ActorsList from "./Components/TopActors";
+import ActorSearch from "./Components/ActorSearch";
 
 function App() {
   return (
     <div>
-      <Appcast />
+      <ActorSearch />
     </div>
   );
 }
