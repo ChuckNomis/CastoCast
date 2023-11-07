@@ -5,16 +5,23 @@ function Appcast() {
   const [actors, setActors] = useState([]);
 
   useEffect(() => {
-    fetchPopularActors();
+    fetchTopActors();
   }, []);
 
-  const fetchPopularActors = async () => {
+  const fetchTopActors = async () => {
     try {
       const apiKey = 'a3d7cc20442b9124e3ef7d9d2f45a2f9'; // Replace with your TMDb API key
-      const response = await axios.get(`https://api.themoviedb.org/3/person/popular?api_key=${apiKey}`);
-      const popularActors = response.data.results;
+      const totalPages = 5; // You can adjust this number to get more or fewer actors
 
-      setActors(popularActors);
+      let topActors = [];
+
+      for (let page = 1; page <= totalPages; page++) {
+        const response = await axios.get(`https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&page=${page}`);
+        const actorsOnPage = response.data.results;
+        topActors = [...topActors, ...actorsOnPage];
+      }
+
+      setActors(topActors);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -22,7 +29,7 @@ function Appcast() {
 
   return (
     <div className="App">
-      <h1>Popular Actors</h1>
+      <h1>Top 100 Actors</h1>
       <ul>
         {actors.map(actor => (
           <li key={actor.id}>
