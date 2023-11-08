@@ -16,8 +16,9 @@ function Appcast() {
       let topActors = [];
 
       for (let page = 1; page <= totalPages; page++) {
-        const response = await axios.get(`https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&page=${page}`);
-        const actorsOnPage = response.data.results;
+        const response = await axios.get(`http://localhost:3001/api/getTopActors/${page}`);
+        console.log(response.data)
+        const actorsOnPage = response.data;
         topActors = [...topActors, ...actorsOnPage];
       }
 
