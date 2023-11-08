@@ -6,6 +6,13 @@ const cors = require('cors');
 app.use(express.json()); // Handle JSON requests
 app.use(cors()); // Allow requests from all origins
 
+
+
+
+
+
+
+
 app.get('/api/getTopActors/:page', async (req, res) => {
   try {
     const apiKey = 'a3d7cc20442b9124e3ef7d9d2f45a2f9';
@@ -17,6 +24,9 @@ app.get('/api/getTopActors/:page', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+
 
 const PORT = process.env.PORT || 3001; // Use the port of your choice
 app.listen(PORT, () => {
