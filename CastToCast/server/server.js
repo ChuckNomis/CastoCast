@@ -9,13 +9,26 @@ app.use(cors()); // Allow requests from all origins
 
 
 
+//Put Movie id and get Actors Objects
+app.get('/api/getActorsByMovie/:movieid' , async (req, res) => {
+  try {
+  const apiKey = 'a3d7cc20442b9124e3ef7d9d2f45a2f9';
+  const movieid = req.params.movieid;
+  const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieid}/credits?api_key=${apiKey}`);
+  const cast = response.data.cast;
+  res.json(cast);
+  }
+  catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 
 
 
 
-
+//Put actor id and get movies array 
 app.get('/api/getMoviesByActor/:actorid' , async (req, res) => {
   try {
   const apiKey = 'a3d7cc20442b9124e3ef7d9d2f45a2f9';
@@ -30,7 +43,7 @@ app.get('/api/getMoviesByActor/:actorid' , async (req, res) => {
 });
 
 
-
+//get top actors
 app.get('/api/getTopActors/', async (req, res) => {
   try {
     const apiKey = 'a3d7cc20442b9124e3ef7d9d2f45a2f9';
