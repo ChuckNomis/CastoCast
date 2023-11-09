@@ -4,25 +4,22 @@ import { pickTwoRandomObjects, actorsList } from "./TopActors";
 import "../index.css";
 
 // to do here: 1. add a moves counting function
+
+const { id1, id2 } = pickTwoRandomObjects(actorsList);
+
+const response = await axios.get(`http://localhost:3001/api/`);
+
 function HeaderPage() {
   return (
     <div>
       <div className="centered-text">Moves: </div>;
-      <div className=".actor1">
-        <ul>
-          {actorsList.map((actor) => (
-            <li key={actor.id}>
-              <h2>{actor.name}</h2>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
-                alt={actor.name}
-              />
-              <p>ID: {actor.id}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className=".actor1"></div>
     </div>
   );
 }
 export default HeaderPage;
+
+// const response = await axios.get(
+//   `http://localhost:3001/api/getTopActors`
+// );
+// const actorsOnPage = response.data;
