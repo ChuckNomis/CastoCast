@@ -31,9 +31,9 @@ function ActorSearch() {
 
   const fetchActorMovies = async (actorId) => {
     try {
-      const apiKey = 'a3d7cc20442b9124e3ef7d9d2f45a2f9'; // Replace with your TMDb API key
-      const response = await axios.get(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${apiKey}`);
-      const actorMovies = response.data.cast;
+      const response = await axios.get(`http://localhost:3001/api/getMoviesByActor/${actorId}`);
+      console.log(response.data);
+      const actorMovies = response.data;
       setMovies(actorMovies);
     } catch (error) {
       console.error('Error fetching data:', error);

@@ -1,1 +1,2 @@
 req = actor.id, res = movies of actor
+req = actor.id, res = actor path poster

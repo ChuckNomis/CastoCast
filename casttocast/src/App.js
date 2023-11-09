@@ -6,7 +6,7 @@ import ActorSearch from "./Components/ActorSearch";
 function App() {
   return (
     <div>
-      <Appcast />
+      <ActorSearch />
     </div>
   );
 }
