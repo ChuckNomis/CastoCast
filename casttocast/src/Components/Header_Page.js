@@ -7,7 +7,7 @@ import "../index.css";
 
 const { id1, id2 } = pickTwoRandomObjects(actorsList);
 
-const response = await axios.get(`http://localhost:3001/api/`);
+//const response = await axios.get(`http://localhost:3001/api/`);
 
 function HeaderPage() {
   return (
