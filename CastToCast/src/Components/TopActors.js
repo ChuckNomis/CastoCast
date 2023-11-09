@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { pickonerandom } from "./Functions";
 
 const actorsList = [];
 function Appcast() {
@@ -12,7 +13,7 @@ function Appcast() {
   const fetchTopActors = async () => {
     try {
       const apiKey = "a3d7cc20442b9124e3ef7d9d2f45a2f9"; // Replace with your TMDb API key
-      const totalPages = 5; // You can adjust this number to get more or fewer actors
+      const totalPages = 1; // You can adjust this number to get more or fewer actors
 
       let topActors = [];
       const response = await axios.get(
@@ -29,38 +30,30 @@ function Appcast() {
   // actors.map((actor) => actorsList.push([actor.id, actor.name]));
   // const actorsList = actors.map((actor) => [actor.id, actor.name]);
   // actorsList.push(...actors.map((actor) => [actor.id, actor.name]));
-  actorsList.push(actors);
+  // let random_person = pickonerandom(actors);
+  console.log(actors);
 
-  return (
-    <div className="App">
-      <h1>Top 100 Actors</h1>
-      <ul>
-        {actors.map((actor) => (
-          <li key={actor.id}>
-            <h2>{actor.name}</h2>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
-              alt={actor.name}
-            />
-            <p>ID: {actor.id}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-function pickTwoRandomObjects(arr) {
-  const randomIndex1 = Math.floor(Math.random() * arr.length);
-  let randomIndex2 = randomIndex1;
-
-  while (randomIndex2 === randomIndex1) {
-    randomIndex2 = Math.floor(Math.random() * arr.length);
-  }
-  const object1 = arr[randomIndex1].id;
-  const object2 = arr[randomIndex2].id;
-  return object1, object2;
+  // console.log(actors[1]);
+  /// this return shouldnt be here
+  // return (
+  //   <div className="App">
+  //     <h1>Top 100 Actors</h1>
+  //     <ul>
+  //       {actors.map((actor) => (
+  //         <li key={actor.id}>
+  //           <h2>{actor.name}</h2>
+  //           <img
+  //             src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+  //             alt={actor.name}
+  //           />
+  //           <p>ID: {actor.id}</p>
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </div>
+  // );
 }
 
-export { pickTwoRandomObjects, actorsList };
+export { actorsList };
 
 export default Appcast;
