@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const actorsList = [];
 function Appcast() {
   const [actors, setActors] = useState([]);
 
@@ -20,23 +21,15 @@ function Appcast() {
       const actorsOnPage = response.data;
       topActors = [...topActors, ...actorsOnPage];
 
-      // for (let page = 1; page <= totalPages; page++) {
-      //   const response = await axios.get(
-      //     `http://localhost:3001/api/getTopActors/${page}`
-      //   );
-      //   console.log(response.data);
-      //   const actorsOnPage = response.data;
-      //   topActors = [...topActors, ...actorsOnPage];
-      // }
-
       setActors(topActors);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-
-  const actorsList = new Array();
-  actors.map((actor) => actorsList.push([actor.id, actor.name]));
+  // actors.map((actor) => actorsList.push([actor.id, actor.name]));
+  // const actorsList = actors.map((actor) => [actor.id, actor.name]);
+  // actorsList.push(...actors.map((actor) => [actor.id, actor.name]));
+  actorsList.push(actors);
 
   return (
     <div className="App">
@@ -63,9 +56,11 @@ function pickTwoRandomObjects(arr) {
   while (randomIndex2 === randomIndex1) {
     randomIndex2 = Math.floor(Math.random() * arr.length);
   }
-  const object1 = arr[randomIndex1];
-  const object2 = arr[randomIndex2];
+  const object1 = arr[randomIndex1].id;
+  const object2 = arr[randomIndex2].id;
   return object1, object2;
 }
-export { pickTwoRandomObjects };
+
+export { pickTwoRandomObjects, actorsList };
+
 export default Appcast;

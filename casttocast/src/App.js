@@ -1,12 +1,13 @@
-
 import Appcast from "./Components/TopActors";
 import ActorsList from "./Components/TopActors";
 import ActorSearch from "./Components/ActorSearch";
+import HeaderPage from "./Components/Header_Page";
 
 function App() {
   return (
     <div>
-      <ActorSearch />
+      <HeaderPage />
+      <Appcast />
     </div>
   );
 }
