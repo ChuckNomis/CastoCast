@@ -34,7 +34,7 @@ app.get('/api/getMoviesByActor/:actorid' , async (req, res) => {
 app.get('/api/getTopActors/', async (req, res) => {
   try {
     const apiKey = 'a3d7cc20442b9124e3ef7d9d2f45a2f9';
-    const response = await axios.get(`https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&page=${page}`);
+    const response = await axios.get(`https://api.themoviedb.org/3/person/popular?api_key=${apiKey}`);
     const topActorsList = response.data.results;
     res.json(topActorsList);
   } catch (error) {
