@@ -4,8 +4,8 @@ import { pickTwoRandomObjects, actorsList } from "./TopActors";
 import "../index.css";
 
 // to do here: 1. add a moves counting function
-
-const { id1, id2 } = pickTwoRandomObjects(actorsList);
+// this commend is crushing:
+// const { id1, id2 } = pickTwoRandomObjects(actorsList);
 
 //const response = await axios.get(`http://localhost:3001/api/`);
 
@@ -18,8 +18,3 @@ function HeaderPage() {
   );
 }
 export default HeaderPage;
-
-// const response = await axios.get(
-//   `http://localhost:3001/api/getTopActors`
-// );
-// const actorsOnPage = response.data;
