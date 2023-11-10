@@ -6,9 +6,12 @@ import HeaderPage from "./Components/Header_Page";
 function App() {
   return (
     <div>
-      <HeaderPage />
-      <hr></hr>
-      <Appcast />
+      <div>
+        <HeaderPage />
+      </div>
+      <div>
+        <Appcast />
+      </div>
     </div>
   );
 }

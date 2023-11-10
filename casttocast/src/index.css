@@ -11,13 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-/* header {
-  position: relative;
-  height: 8vh;
-  border-bottom: 7px solid #eee;
-  text-align: center;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+/* 
+.header {
+  background-color: #3498db;
+  color: #fff;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 } */
 .centered-text {
   text-align: center;

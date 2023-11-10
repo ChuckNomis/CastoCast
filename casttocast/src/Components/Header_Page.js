@@ -42,7 +42,6 @@ function HeaderPage() {
   };
 
   TwoRandomactors();
-  console.log(useActorProfilePath(actorId1));
 
   return (
     <div>
