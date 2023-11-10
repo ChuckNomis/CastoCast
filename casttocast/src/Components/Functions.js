@@ -1,3 +1,5 @@
+import "../index.css";
+
 function pickTwoRandomObjects(arr) {
   const randomIndex1 = Math.floor(Math.random() * arr.length);
   let randomIndex2 = randomIndex1;
@@ -9,10 +11,8 @@ function pickTwoRandomObjects(arr) {
   const actorId2 = arr[randomIndex2].id;
   return { actorId1, actorId2 };
 }
-
 function pickonerandom(arr) {
   const randomIndex1 = Math.floor(Math.random() * arr.length);
-  return arr[randomIndex1];
+  return randomIndex1;
 }
-
 export { pickTwoRandomObjects, pickonerandom };

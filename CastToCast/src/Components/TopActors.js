@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { pickonerandom } from "./Functions";
-
 function Appcast() {
   const [actors, setActors] = useState([]);
 
@@ -39,5 +37,4 @@ function Appcast() {
     </div>
   );
 }
-
 export default Appcast;
