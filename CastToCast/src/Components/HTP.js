@@ -91,10 +91,10 @@ function DetailsView({ actorId, movieId, onBackClick, onMovieClick, onActorClick
             {Cast.map((actor) => (
               <li key={actor.id}>
                 <h3>{actor.name}</h3>
-                <button onClick={() => onActorClick(actor.id)}
-                  src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
-                  alt={actor.name}
-                />
+                <button onClick={() => onActorClick(actor.id)}>
+                  <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                  alt={actor.name}/>
+                </button>
               </li>
             ))}
         </ul>
