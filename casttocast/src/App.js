@@ -29,6 +29,7 @@ function App() {
 
   return (
     <div>
+      <HeaderPage />
       {/* Render other components as needed */}
 
       <DetailsView
