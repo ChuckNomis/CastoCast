@@ -9,8 +9,8 @@ function pickTwoRandomObjects(arr) {
   while (randomIndex2 === randomIndex1) {
     randomIndex2 = Math.floor(Math.random() * arr.length);
   }
-  const actorId1 = arr[randomIndex1].id;
-  const actorId2 = arr[randomIndex2].id;
+  const actorId1 = arr[randomIndex1];
+  const actorId2 = arr[randomIndex2];
   return { actorId1, actorId2 };
 }
 function pickonerandom(arr) {

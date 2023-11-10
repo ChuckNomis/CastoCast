@@ -14,29 +14,36 @@ function HeaderPage() {
   const [actors, setActors] = useState([]);
   const [actorId1, setActorId1] = useState(null);
   const [actorId2, setActorId2] = useState(null);
-
+  const [actorName1, setActorName1] = useState(null);
+  const [actorName2, setActorName2] = useState(null);
   const TwoRandomactors = () => {
     useEffect(() => {
-      const fetchTopActors = async () => {
+      const fetchActors = async () => {
         try {
-          const response = await axios.get(
-            `http://localhost:3001/api/getTopActors`
-          );
-          const topActors = response.data;
-          setActors(topActors);
+          const actorsList = [];
+          const totalPages = 20;
+          for (let page = 1; page <= totalPages; page++) {
+            const response = await axios.get(
+              `http://localhost:3001/api/getTopActors/${page}`
+            );
+            actorsList.push(...response.data);
+          }
+          setActors(actorsList);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
       };
 
-      fetchTopActors();
+      fetchActors();
     }, []);
 
     useEffect(() => {
       if (actors.length > 0) {
         const { actorId1, actorId2 } = pickTwoRandomObjects(actors);
-        setActorId1(actorId1);
-        setActorId2(actorId2);
+        setActorId1(actorId1.id);
+        setActorId2(actorId2.id);
+        setActorName1(actorId1.name);
+        setActorName2(actorId2.name);
       }
     }, [actors]);
   };
@@ -48,6 +55,7 @@ function HeaderPage() {
       <div className="centered-text">Moves:?? </div>
       <div className="actor1">
         <ul>
+          <p>{actorName1}</p>
           <img
             src={`https://image.tmdb.org/t/p/w500${useActorProfilePath(
               actorId1
@@ -57,6 +65,7 @@ function HeaderPage() {
       </div>
       <div className="actor2">
         <ul>
+          <p>{actorName2}</p>
           <img
             src={`https://image.tmdb.org/t/p/w500${useActorProfilePath(
               actorId2
