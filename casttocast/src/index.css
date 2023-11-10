@@ -29,17 +29,27 @@ code {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .actor1 {
-  display: flex;
-  align-items: center;
+  position: fixed;
+  top: 50px;
+  left: 80px;
+  margin: 10px;
 }
 
 .actor1 img {
-  max-width: 100px; /* Adjust the max-width as needed */
-  margin-right: 20px; /* Adjust the margin as needed */
+  width: 200px;
+  height: auto;
 }
 
-.actor1 p {
-  margin: 0;
+.actor2 {
+  position: fixed;
+  top: 50px;
+  right: 80px;
+  margin: 10px;
+}
+
+.actor2 img {
+  width: 200px;
+  height: auto;
 }
 main {
   height: 65vh;

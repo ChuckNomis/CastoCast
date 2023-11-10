@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../index.css";
 
 function pickTwoRandomObjects(arr) {
@@ -15,4 +17,27 @@ function pickonerandom(arr) {
   const randomIndex1 = Math.floor(Math.random() * arr.length);
   return randomIndex1;
 }
-export { pickTwoRandomObjects, pickonerandom };
+
+function useActorProfilePath(id) {
+  const [path, setPath] = useState([]);
+
+  useEffect(() => {
+    const fetchPath = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/api/getActor/${id}`
+        );
+        const path = response.data;
+        setPath(path.profile_path);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchPath();
+  }, [id]);
+
+  return path;
+}
+
+export { pickTwoRandomObjects, pickonerandom, useActorProfilePath };

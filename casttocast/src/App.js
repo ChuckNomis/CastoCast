@@ -7,6 +7,7 @@ function App() {
   return (
     <div>
       <HeaderPage />
+      <hr></hr>
       <Appcast />
     </div>
   );
