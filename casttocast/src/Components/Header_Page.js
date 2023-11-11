@@ -51,8 +51,7 @@ function HeaderPage() {
   TwoRandomactors();
 
   return (
-    <div>
-      <div className="centered-text">Moves:?? </div>
+    <header className="header">
       <div className="actor1">
         <ul>
           <p>{actorName1}</p>
@@ -73,7 +72,7 @@ function HeaderPage() {
           ></img>
         </ul>
       </div>
-    </div>
+    </header>
   );
 }
 
