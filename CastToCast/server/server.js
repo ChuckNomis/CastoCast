@@ -21,15 +21,15 @@ app.get("/api/getActorsByMovie/:movieid", async (req, res) => {
   }
 });
 
-//Put actor id and get credits array
+//Put actor id and get movies array
 app.get("/api/getMoviesByActor/:actorid", async (req, res) => {
   try {
     const apiKey = "a3d7cc20442b9124e3ef7d9d2f45a2f9";
     const actorId = req.params.actorid;
     const response = await axios.get(
-      `https://api.themoviedb.org/3/person/${actorId}/combined_credits?api_key=${apiKey}`
+      `https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${apiKey}`
     );
-    const movies = response.data;
+    const movies = response.data.cast;
     res.json(movies);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
