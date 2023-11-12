@@ -68,6 +68,21 @@ app.get("/api/getMovie/:movieId", async (req, res) => {
   }
 });
 
+app.get("/api/getTvshow/:tvshowId", async (req, res) => {
+  try {
+    const apiKey = "a3d7cc20442b9124e3ef7d9d2f45a2f9";
+    const tvshowId = req.params.tvshowId;
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/tv/${tvshowId}?api_key=${apiKey}`
+    );
+    const tvshow = response.data;
+    console.log(response.data);
+    res.json(tvshow);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 //get top actors
 app.get("/api/getTopActors/:page", async (req, res) => {
   try {

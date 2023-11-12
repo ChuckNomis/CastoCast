@@ -39,14 +39,21 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
         console.error('Error fetching data:', error);
       }
     };
+
+
+    const isMovie = movieType && movieType.toLowerCase() === 'movie';
     if (actorId) {
       fetchData(actorId, "getActor");
       fetchActorMovies(actorId);
-    } else if (movieId) {
+    } else if (isMovie) {
       fetchData(movieId, "getMovie");
       fetchMovieActors(movieId, movieType);
     }
-  }, [actorId, movieId]);
+        else{
+          fetchData(movieId,"getTvshow")
+          fetchMovieActors(movieId, movieType);
+        }
+  }, [movieType, actorId, movieId, onBackClick, onMovieClick, onActorClick]);
 
   if (!details) {
     return <div>Loading...</div>;
