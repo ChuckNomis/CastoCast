@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function DetailsView({ actorId, movieId, onBackClick, onMovieClick, onActorClick }) {
+function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, onActorClick }) {
   const [details, setDetails] = useState(null);
   const [Movies, setMovies] = useState([]);
   const [Cast, setCast] = useState([]);
@@ -30,9 +30,9 @@ function DetailsView({ actorId, movieId, onBackClick, onMovieClick, onActorClick
       }
     };
 
-    const fetchMovieActors = async (movieId) => {
+    const fetchMovieActors = async (movieId, movieType) => {
       try {
-        const response = await axios.get(`http://localhost:3001/api/getActorsByMovie/${movieId}`);
+        const response = await axios.get(`http://localhost:3001/api/getActorsByMovie/${movieId}/${movieType}`);
         console.log(response.data);
         setCast(response.data);
       } catch (error) {
@@ -44,7 +44,7 @@ function DetailsView({ actorId, movieId, onBackClick, onMovieClick, onActorClick
       fetchActorMovies(actorId);
     } else if (movieId) {
       fetchData(movieId, "getMovie");
-      fetchMovieActors(movieId);
+      fetchMovieActors(movieId, movieType);
     }
   }, [actorId, movieId]);
 
@@ -62,14 +62,12 @@ function DetailsView({ actorId, movieId, onBackClick, onMovieClick, onActorClick
           alt={details.name || details.title}
         />
         <ul>
-            {Movies.map((movie) => (
-              <li key={movie.id}>
-                <h3>{movie.title}</h3>
-                <button onClick={() => onMovieClick(movie.id)}>
-                  <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}/>
-
-                  
+            {Movies.map((credit) => (
+              <li key={credit.id}>
+                <h3>{credit.title || credit.name}</h3>
+                <button onClick={() => onMovieClick(credit.id,credit.media_type)}>
+                  <img src={`https://image.tmdb.org/t/p/w500${credit.poster_path}`}
+                  alt={credit.title || credit.name}/>                 
                 </button>
               </li>
             ))}

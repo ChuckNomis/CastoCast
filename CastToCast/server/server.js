@@ -7,13 +7,16 @@ app.use(express.json()); // Handle JSON requests
 app.use(cors()); // Allow requests from all origins
 
 //Put Movie id and get Actors Objects
-app.get("/api/getActorsByMovie/:movieid", async (req, res) => {
+app.get("/api/getActorsByMovie/:movieid/:movieType", async (req, res) => {
   try {
     const apiKey = "a3d7cc20442b9124e3ef7d9d2f45a2f9";
     const movieid = req.params.movieid;
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieid}/credits?api_key=${apiKey}`
-    );
+    const movieType = req.params.movieType;
+    const isMovie = movieType.toLowerCase() === 'movie';
+    const endpoint = isMovie
+    ? `https://api.themoviedb.org/3/movie/${movieid}/credits`
+    : `https://api.themoviedb.org/3/tv/${movieid}/credits`;
+    const response = await axios.get(`${endpoint}?api_key=${apiKey}`);
     const cast = response.data.cast;
     res.json(cast);
   } catch (error) {
@@ -27,7 +30,7 @@ app.get("/api/getMoviesByActor/:actorid", async (req, res) => {
     const apiKey = "a3d7cc20442b9124e3ef7d9d2f45a2f9";
     const actorId = req.params.actorid;
     const response = await axios.get(
-      `https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${apiKey}`
+      `https://api.themoviedb.org/3/person/${actorId}/combined_credits?api_key=${apiKey}`
     );
     const movies = response.data.cast;
     res.json(movies);
