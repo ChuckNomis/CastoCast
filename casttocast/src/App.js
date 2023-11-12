@@ -1,19 +1,14 @@
 import Appcast from "./Components/TopActors";
 import ActorsList from "./Components/TopActors";
+import ActorSearch from "./Components/ActorSearch";
 import HeaderPage from "./Components/Header_Page";
 import DetailsView from "./Components/HTP";
-import Modal from "./Components/Modal";
 import React, { useState } from "react";
 
 function App() {
   const [selectedActorId, setSelectedActorId] = useState(976);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
-  const [showModal, setShowModal] = useState(true);
 
-  const handleStartClick = () => {
-    console.log("its working");
-    setShowModal(false);
-  };
   const handleBackClick = () => {
     // Implement logic to go back
     setSelectedActorId(null);
@@ -35,6 +30,8 @@ function App() {
   return (
     <div>
       <HeaderPage />
+      {/* Render other components as needed */}
+
       <DetailsView
         actorId={selectedActorId}
         movieId={selectedMovieId}
