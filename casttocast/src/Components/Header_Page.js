@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { pickTwoRandomObjects, useActorProfilePath } from "./Functions";
+import Settings from "./Settings";
 import "../index.css";
-
-// this commend is crushing:
-//console.log(pickTwoRandomObjects(actorsList));
-
-// const response = await axios.get(`http://localhost:3001/api/`);
-
-// to do here: 1. add a moves counting function , 2. put a hr tag
 
 function HeaderPage() {
   const [actors, setActors] = useState([]);
@@ -16,6 +10,8 @@ function HeaderPage() {
   const [actorId2, setActorId2] = useState(null);
   const [actorName1, setActorName1] = useState(null);
   const [actorName2, setActorName2] = useState(null);
+  const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
+
   const TwoRandomactors = () => {
     useEffect(() => {
       const fetchActors = async () => {
@@ -49,10 +45,22 @@ function HeaderPage() {
   };
 
   TwoRandomactors();
+  const openSettingsModal = () => {
+    setSettingsModalOpen(true);
+  };
+
+  const closeSettingsModal = () => {
+    setSettingsModalOpen(false);
+  };
 
   return (
     <div>
       <div className="centered-text">Moves:?? </div>
+      <div className="settingsButton">
+        <button type="button" onClick={openSettingsModal}>
+          settings
+        </button>
+      </div>
       <div className="actor1">
         <ul>
           <p>{actorName1}</p>
@@ -73,6 +81,11 @@ function HeaderPage() {
           ></img>
         </ul>
       </div>
+      {isSettingsModalOpen && (
+        <div>
+          <Settings onClose={closeSettingsModal} />
+        </div>
+      )}
     </div>
   );
 }
