@@ -3,8 +3,13 @@ import axios from "axios";
 
 function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, onActorClick }) {
   const [details, setDetails] = useState(null);
-  const [Movies, setMovies] = useState([]);
+  const [Credits, setCredits] = useState([]);
   const [Cast, setCast] = useState([]);
+  let idList = [];
+
+  const isIdInList = (id) =>{
+    return idList.includes(id)
+  }
 
   useEffect(() => {
     const fetchData = async (id, type) => {
@@ -24,7 +29,7 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
         const response = await axios.get(`http://localhost:3001/api/getMoviesByActor/${actorId}`);
         console.log(response.data);
         const actorMovies = response.data;
-        setMovies(actorMovies);
+        setCredits(actorMovies);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -39,6 +44,8 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
         console.error('Error fetching data:', error);
       }
     };
+
+    
 
 
     const isMovie = movieType && movieType.toLowerCase() === 'movie';
@@ -69,15 +76,24 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
           alt={details.name || details.title}
         />
         <ul>
-            {Movies.map((credit) => (
-              <li key={credit.id}>
+            {Credits.map((credit) => {
+              const isIdExisting = isIdInList(credit.id);
+              if(credit.poster_path != null && !isIdExisting){
+                idList.push(credit.id);
+                return(
+                  <li key={credit.id}>
                 <h3>{credit.title || credit.name}</h3>
                 <button onClick={() => onMovieClick(credit.id,credit.media_type)}>
                   <img src={`https://image.tmdb.org/t/p/w500${credit.poster_path}`}
                   alt={credit.title || credit.name}/>                 
                 </button>
-              </li>
-            ))}
+              </li>     
+                );
+              }
+              else{
+                return null
+              }
+            })}
           </ul>
 
       </div>
@@ -93,15 +109,25 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
           alt={details.name || details.title}
         />
           <ul>
-            {Cast.map((actor) => (
-              <li key={actor.id}>
+            {Cast.map((actor) => {
+              if(actor.profile_path!=null)
+              {
+                return(
+                  <li key={actor.id}>
                 <h3>{actor.name}</h3>
                 <button onClick={() => onActorClick(actor.id)}>
                   <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
                   alt={actor.name}/>
                 </button>
               </li>
-            ))}
+                );
+              }
+              else
+              {
+                return null;
+              }
+              
+            })}
         </ul>
       </div>
     );
