@@ -15,7 +15,7 @@ app.get("/api/getActorsByMovie/:movieid/:movieType", async (req, res) => {
     const isMovie = movieType.toLowerCase() === 'movie';
     const endpoint = isMovie
     ? `https://api.themoviedb.org/3/movie/${movieid}/credits`
-    : `https://api.themoviedb.org/3/tv/${movieid}/credits`;
+    : `https://api.themoviedb.org/3/tv/${movieid}/aggregate_credits`;
     const response = await axios.get(`${endpoint}?api_key=${apiKey}`);
     const cast = response.data.cast;
     res.json(cast);

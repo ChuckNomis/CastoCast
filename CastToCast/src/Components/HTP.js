@@ -134,7 +134,6 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
   
 
   }
-
 }
 
 export default DetailsView;
