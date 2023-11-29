@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {TopFunction} from "./Functions";
 
 function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, onActorClick }) {
   const [details, setDetails] = useState(null);
@@ -83,7 +84,7 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
                 return(
                   <li key={credit.id}>
                 <h3>{credit.title || credit.name}</h3>
-                <button onClick={() => onMovieClick(credit.id,credit.media_type)}>
+                <button onClick={() => onMovieClick(credit.id,credit.media_type) & TopFunction()}>
                   <img src={`https://image.tmdb.org/t/p/w500${credit.poster_path}`}
                   alt={credit.title || credit.name}/>                 
                 </button>
@@ -115,7 +116,7 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
                 return(
                   <li key={actor.id}>
                 <h3>{actor.name}</h3>
-                <button onClick={() => onActorClick(actor.id)}>
+                <button onClick={() => onActorClick(actor.id) & TopFunction()}>
                   <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
                   alt={actor.name}/>
                 </button>

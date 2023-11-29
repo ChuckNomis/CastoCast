@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../index.css";
 
+
+
+function TopFunction(){
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+
 function pickTwoRandomObjects(arr) {
   const randomIndex1 = Math.floor(Math.random() * arr.length);
   let randomIndex2 = randomIndex1;
@@ -40,7 +48,7 @@ function useActorProfilePath(id) {
   return path;
 }
 
-export { pickTwoRandomObjects, pickonerandom, useActorProfilePath };
+export { pickTwoRandomObjects, pickonerandom, useActorProfilePath, TopFunction};
 
 
 
