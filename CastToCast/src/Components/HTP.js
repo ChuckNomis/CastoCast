@@ -29,8 +29,9 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
       try {
         const response = await axios.get(`http://localhost:3001/api/getMoviesByActor/${actorId}`);
         console.log(response.data);
-        const actorMovies = response.data;
-        setCredits(actorMovies);
+        const fetchedMovies = response.data;
+        const sortedMovies = fetchedMovies.sort((a,b) => b.popularity - a.popularity);
+        setCredits(sortedMovies);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -79,7 +80,16 @@ function DetailsView({ movieType, actorId, movieId, onBackClick, onMovieClick, o
         <ul>
             {Credits.map((credit) => {
               const isIdExisting = isIdInList(credit.id);
-              if(credit.poster_path != null && !isIdExisting){
+              if(credit.poster_path != null &&
+                !isIdExisting &&
+                !credit.genre_ids.includes(10767) &&
+                !credit.genre_ids.includes(99) &&
+                !credit.genre_ids.includes(10763) &&
+                !credit.genre_ids.includes(10764) &&
+                (!credit.type || !credit.type.toLowerCase().includes("talk show"))&&
+                Boolean(credit.genre_ids.length)
+                )
+                {
                 idList.push(credit.id);
                 return(
                   <li key={credit.id}>
