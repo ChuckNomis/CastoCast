@@ -54,38 +54,41 @@ function HeaderPage() {
   };
 
   return (
-    <div>
-      <div className="centered-text">Moves:?? </div>
-      <div className="settingsButton">
-        <button type="button" onClick={openSettingsModal}>
-          settings
-        </button>
-      </div>
-      <div className="actor1">
-        <ul>
-          <p>{actorName1}</p>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${useActorProfilePath(
-              actorId1
-            )}`}
-          ></img>
-        </ul>
-      </div>
-      <div className="actor2">
-        <ul>
-          <p>{actorName2}</p>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${useActorProfilePath(
-              actorId2
-            )}`}
-          ></img>
-        </ul>
-      </div>
-      {isSettingsModalOpen && (
-        <div>
-          <Settings onClose={closeSettingsModal} />
+    <div className="header-container">
+      <header className="site-header">
+        <div className="centered-text">Moves:?? </div>
+        <div className="settingsButton">
+          <button type="button" onClick={openSettingsModal}>
+            settings
+          </button>
         </div>
-      )}
+        <div className="actor1">
+          <ul>
+            <p>{actorName1}</p>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${useActorProfilePath(
+                actorId1
+              )}`}
+            ></img>
+          </ul>
+        </div>
+        <div className="actor2">
+          <ul>
+            <p>{actorName2}</p>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${useActorProfilePath(
+                actorId2
+              )}`}
+            ></img>
+          </ul>
+        </div>
+        {isSettingsModalOpen && (
+          <div>
+            <Settings onClose={closeSettingsModal} />
+          </div>
+        )}
+      </header>
+      <div className="separator"></div>
     </div>
   );
 }

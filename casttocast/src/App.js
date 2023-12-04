@@ -17,7 +17,7 @@ function App() {
     setSelectedMovieType(null);
   };
 
-  const handleMovieClick = (movieId,creditType) => {
+  const handleMovieClick = (movieId, creditType) => {
     // Implement logic to switch to movie details using movieId
     setSelectedMovieId(movieId);
     setSelectedMovieType(creditType);
@@ -33,16 +33,16 @@ function App() {
 
   return (
     <div>
-      {/* Render other components as needed */}
-
-      <DetailsView
-        actorId={selectedActorId}
-        movieId={selectedMovieId}
-        movieType={selectedMovieType}
-        onBackClick={handleBackClick}
-        onMovieClick={handleMovieClick}
-        onActorClick={handleActorClick}
-      />
+      <div className="content-container">
+        <DetailsView
+          actorId={selectedActorId}
+          movieId={selectedMovieId}
+          movieType={selectedMovieType}
+          onBackClick={handleBackClick}
+          onMovieClick={handleMovieClick}
+          onActorClick={handleActorClick}
+        />
+      </div>
     </div>
   );
 }
