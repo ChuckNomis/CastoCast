@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div>
-      <div className="content-container">
+      <div>
         <DetailsView
           actorId={selectedActorId}
           movieId={selectedMovieId}

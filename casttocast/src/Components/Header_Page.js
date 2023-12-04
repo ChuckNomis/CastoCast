@@ -54,8 +54,8 @@ function HeaderPage() {
   };
 
   return (
-    <div className="header-container">
-      <header className="site-header">
+    <div>
+      <header>
         <div className="centered-text">Moves:?? </div>
         <div className="settingsButton">
           <button type="button" onClick={openSettingsModal}>
@@ -88,9 +88,7 @@ function HeaderPage() {
           </div>
         )}
       </header>
-      <div className="separator"></div>
     </div>
   );
 }
-
 export default HeaderPage;
