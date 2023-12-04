@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { TopFunction } from "./Functions";
+import {TopFunction} from "./Functions";
 
 function DetailsView({
   movieType,
@@ -98,14 +98,19 @@ function DetailsView({
               !credit.genre_ids.includes(99) &&
               !credit.genre_ids.includes(10763) &&
               !credit.genre_ids.includes(10764) &&
-              (!credit.type ||
-                !credit.type.toLowerCase().includes("talk show")) &&
+              credit.character !== "Self" &&
+              (credit.character && credit.character.trim().length > 0) &&
+              !credit.character.includes("(archive footage)") &&
+              !credit.character.includes(details.name) &&
+              !credit.character.includes("Himself") &&
+              !credit.character.includes("Herself") &&
               Boolean(credit.genre_ids.length)
             ) {
               idList.push(credit.id);
               return (
                 <li key={credit.id}>
                   <h3>{credit.title || credit.name}</h3>
+                  <h3>{credit.character}</h3>
                   <button
                     onClick={() =>
                       onMovieClick(credit.id, credit.media_type) & TopFunction()
@@ -127,7 +132,7 @@ function DetailsView({
     );
   } else if (movieId) {
     return (
-      <div className="DetailsView">
+      <div>
         <button onClick={onBackClick}>Back</button>
         <h2>{details.name || details.title}</h2>
         <img
